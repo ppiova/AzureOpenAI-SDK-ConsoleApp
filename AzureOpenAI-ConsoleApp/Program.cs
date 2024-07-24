@@ -6,7 +6,6 @@ using System.Collections.Generic; // Added to use List<T>
 
 string? key = GetEnvironmentVariable("AZURE_OPENAI_KEY");
 string? endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
-//string? model = GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENTGPT35");
 string? model = "gpt-4o";
 
 AzureOpenAIClient azureClient = new(
@@ -38,12 +37,10 @@ do
 {
     Console.Write("Enter your message (type 'exit' to stop): ");
     userInput = Console.ReadLine();
-    if (userInput?.ToLower() == "exit") break;
+    if (String.Equals(userInput, "exit", StringComparison.OrdinalIgnoreCase)) break;
 
     messages.Add(new UserChatMessage(userInput));
     ChatCompletion completion = chatClient.CompleteChat(messages, options);
     Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 } while (true);
 
-Console.BackgroundColor = ConsoleColor.Black;
-Console.ForegroundColor = ConsoleColor.Green;
