@@ -1,4 +1,4 @@
-## Azure OpenAI Service .NET SDK Quickstart
+## Azure OpenAI Service .NET SDK (2.0.0-beta.2) Quickstart
 
 This repository provides a quickstart guide and example for integrating Azure OpenAI Service using the .NET SDK.
 
