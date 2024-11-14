@@ -2,10 +2,12 @@
 using Azure;
 using OpenAI.Chat;
 using static System.Environment;
-using System.Collections.Generic; // Added to use List<T>
+using System.Collections.Generic;
 
-string? key = GetEnvironmentVariable("AZURE_OPENAI_KEY");
-string? endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT");
+string key = GetEnvironmentVariable("AZURE_OPENAI_KEY")
+    ?? throw new InvalidOperationException("Environment variable 'AZURE_OPENAI_KEY' not found.");
+string endpoint = GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")
+    ?? throw new InvalidOperationException("Environment variable 'AZURE_OPENAI_ENDPOINT' not found.");
 string? model = "gpt-4o";
 
 AzureOpenAIClient azureClient = new(
@@ -21,7 +23,7 @@ ChatClient chatClient = azureClient.GetChatClient(model);
 ChatCompletionOptions options = new ChatCompletionOptions()
 {
     Temperature = 0.7f,
-    MaxTokens = 50,
+    MaxTokens = 500,
     FrequencyPenalty = 0,
     PresencePenalty = 0
     
